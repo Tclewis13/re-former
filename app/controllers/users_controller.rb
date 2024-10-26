@@ -4,11 +4,18 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(params[:user])
+    # @user = User.new(username: params[:username], email: params[:email], password: params[:password])
+    @user = User.new(username: params[:user][:username], email: params[:user][:email], password: params[:user][:password])
     if @user.save
-      redirect_to @user
+      redirect_to new_user_path
     else
-      render "new"
+      render :new, status: :unprocessable_entity
     end
+  end
+
+  private
+
+  def allowed_post_params
+    params.require(:post).permit(:username, :password, :email)
   end
 end
