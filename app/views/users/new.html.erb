@@ -6,7 +6,16 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="/users" accept-charset="UTF-8" method="post">
+    <%= form_tag("/users", method: "post") do %>
+        <%= label_tag(:username, "Username") %>
+        <%= text_field_tag(:username) %>
+        <%= label_tag(:password, "Password") %>
+        <%= password_field_tag(:password) %>
+        <%= label_tag(:email, "Email") %>
+        <%= email_field_tag(:email) %>
+        <%= submit_tag("Create") %>
+    <% end %>
+    <!--<form action="/users" accept-charset="UTF-8" method="post">
         <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
         <label for="username" name="username">Username:</label>
         <input type="text" id="username" name="user[username]"><br><br>
@@ -15,6 +24,6 @@
         <label for="email">Email</label>
         <input type="email" id="email" name="user[email]"><br><br>
         <input type="submit" name="commit" value="Create User" data-disable-with="Create User">
-      </form>
+      </form>-->
 </body>
 </html>
